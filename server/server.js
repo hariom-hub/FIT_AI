@@ -16,12 +16,12 @@ app.get("/home",(req,res)=>{
 
 app.get("/login",(req,res)=>{
 
-    res.send("login.ejs");
+    res.render("login.ejs");
 })
 
 app.get("/signup",(req,res)=>{
 
-    res.send("signup.ejs");
+    res.render("signup.ejs");
 })
 app.listen(port,()=>{
 
