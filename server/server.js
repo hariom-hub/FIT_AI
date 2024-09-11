@@ -14,14 +14,14 @@ app.get("/home",(req,res)=>{
     res.render("home.ejs");
 })
 
-app.get("/home/login",(req,res)=>{
+app.get("/login",(req,res)=>{
 
-    res.send("<h1>Login from here</h1>.")
+    res.send("login.ejs");
 })
 
-app.get("/home/signup",(req,res)=>{
+app.get("/signup",(req,res)=>{
 
-    res.send("<h1>Signup from here</h1>.")
+    res.send("signup.ejs");
 })
 app.listen(port,()=>{
 
