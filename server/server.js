@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const mongoUrl = 'mongodb://127.0.0.1:27017/Fit_AI';
 main().then(() => {
 
-    console.log("db connected successfully");
+    l̥console.log("db connected successfully");
 }).catch((error) => {
     console.log(error);
 });
@@ -46,17 +46,17 @@ app.get("/", (req, res) => {
     res.send("<h1>You are on the root path");
 });
 
-
 app.use(session(sessionOptions));
-app.get("/demouser", async (req, res) => {
+// app.get("/demouser", async (req, res) => {
 
-    let fakeUser = new User({
-        email: "demo@gmail.com",
-        username: "demo-student4"
-    });
-    let  registeredUser  = await User.register(fakeUser, "hello world");
-    res.send(registeredUser);
-})
+//     let fakeUser = new User({
+//         email: "demo@gmail.com",
+//         username: "demo-student5"
+//     });
+//     let  registeredUser  = await User.register(fakeUser, "hello world");
+//     res.send(registeredUser);
+// })
+
 app.get("/home", (req, res) => {
 
     res.render("home.ejs");
@@ -71,6 +71,7 @@ app.get("/signup", (req, res) => {
 
     res.render("signup.ejs");
 })
+
 app.listen(port, () => {
 
     console.log("server is listening to port : 8080");
