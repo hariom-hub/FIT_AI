@@ -9,6 +9,11 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 
 //home route
+
+app.get("/",(req,res)=>{
+
+    res.send("<h1>You are on the root path");
+})
 app.get("/home",(req,res)=>{
 
     res.render("home.ejs");
