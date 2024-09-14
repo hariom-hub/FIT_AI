@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const mongoUrl = 'mongodb://127.0.0.1:27017/Fit_AI';
 main().then(() => {
 
-    l̥console.log("db connected successfully");
+    console.log("db connected successfully");
 }).catch((error) => {
     console.log(error);
 });
@@ -43,7 +43,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.get("/", (req, res) => {
 
-    res.send("<h1>You are on the root path");
+    res.send("<h1>You are on the root path</h1>");
 });
 
 app.use(session(sessionOptions));
