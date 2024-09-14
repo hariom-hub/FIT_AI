@@ -74,18 +74,19 @@ app.get("/signup", (req, res) => {
 
 //post route to submit the form
 
-app.post("/signup",async (req,res)=>{
+app.post("/signup", async (req, res) => {
 
-    try{
+    try {
 
-        let {username,email,password} = req.body;
-        const newUser = new User({email,username});
-        const registeredUser = await User.register(newUser,password);
-        console.log(registeredUser);
+        let { username, email, password } = req.body;
+        const newUser = new User({ email, username });
+        const registeredUser = await User.register(newUser, password);
+        // console.log(registeredUser);
+        req.flash("success", "user registered successfully.");
         res.redirect("/home");
-        req.flash("success","user registered successfully.");
-    }catch(error){
-        alert("user with a same username already exists");
+
+    } catch (error) {
+        req.flash("error","User with the same username has already registered. Please enter a different username.");
         res.redirect("/signup");
     }
 
