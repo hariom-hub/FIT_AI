@@ -41,21 +41,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(session(sessionOptions));
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
 app.get("/", (req, res) => {
 
     res.send("<h1>You are on the root path</h1>");
 });
 
-app.use(session(sessionOptions));
-// app.get("/demouser", async (req, res) => {
-
-//     let fakeUser = new User({
-//         email: "demo@gmail.com",
-//         username: "demo-student5"
-//     });
-//     let  registeredUser  = await User.register(fakeUser, "hello world");
-//     res.send(registeredUser);
-// })
 
 app.get("/home", (req, res) => {
 
@@ -67,9 +65,30 @@ app.get("/login", (req, res) => {
     res.render("login.ejs");
 })
 
+
+//route to signup(enter signup details)
 app.get("/signup", (req, res) => {
 
     res.render("signup.ejs");
+});
+
+//post route to submit the form
+
+app.post("/signup",async (req,res)=>{
+
+    try{
+
+        let {username,email,password} = req.body;
+        const newUser = new User({email,username});
+        const registeredUser = await User.register(newUser,password);
+        console.log(registeredUser);
+        res.redirect("/home");
+        req.flash("success","user registered successfully.");
+    }catch(error){
+        alert("user with a same username already exists");
+        res.redirect("/signup");
+    }
+
 })
 
 app.listen(port, () => {
