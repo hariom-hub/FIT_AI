@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session());  // Required for persistent login sessions
 
 // Set up view engine
-app.set("views engine", "ejs");
+app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/public")));
@@ -47,6 +47,16 @@ app.use((req, res, next) => {
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+// app.get("/test-flash", (req, res) => {
+//     req.flash('success', 'Flash message test successful!');
+//     res.redirect("/flash-display");
+// });
+
+// app.get("/flash-display", (req, res) => {
+//     res.send(req.flash('success'));
+// });
 
 // Routes
 app.get("/", (req, res) => {
@@ -70,11 +80,15 @@ app.post("/signup", async (req, res) => {
         req.flash("success", "User registered successfully.");
         res.redirect("/home");
     } catch (error) {
-        req.flash("error", error.message);
-        res.redirect("/signup");
+        res.render("signuperror.ejs");
     }
 });
 
+
+app.get("/loginerror",(req,res)=>{
+
+    res.render("loginerror.ejs");
+})
 // Login route (GET)
 app.get("/login", (req, res) => {
     res.render("login.ejs");
@@ -82,11 +96,15 @@ app.get("/login", (req, res) => {
 
 // Login route (POST)
 app.post("/login", passport.authenticate("local", {
-    failureRedirect: "/login",
+    failureRedirect: "/loginerror",
     failureFlash: true
-}), (req, res) => {
-    req.flash("success", "Welcome back!");
-    res.redirect("/home");
+}), async (req, res) => {
+    try {
+        req.flash("success", "Welcome back!");
+        res.redirect("/home");
+    } catch (error) {
+        res.render("loginerror.ejs");
+    }
 });
 
 // Start server
