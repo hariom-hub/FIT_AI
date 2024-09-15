@@ -74,18 +74,33 @@ app.get("/signup", (req, res) => {
 // Signup route
 app.post("/signup", async (req, res) => {
     try {
-        let { username, email, password } = req.body;
+        let { username, email, password, confirmpassword } = req.body;
+
+        // Check if the passwords match
+        if (password !== confirmpassword) {
+            return res.render("notequal.ejs");
+        }
+
+        // Proceed with registration if passwords match
         const newUser = new User({ email, username });
+
+        // Register user
         await User.register(newUser, password);
+
+        // Flash success message and redirect to home
         req.flash("success", "User registered successfully.");
-        res.redirect("/home");
+        return res.redirect("/home");
+
     } catch (error) {
-        res.render("signuperror.ejs");
+        // Flash error message and render the error page
+        req.flash("error", error.message);
+        return res.render("signuperror.ejs");
     }
 });
 
 
-app.get("/loginerror",(req,res)=>{
+
+app.get("/loginerror", (req, res) => {
 
     res.render("loginerror.ejs");
 })
