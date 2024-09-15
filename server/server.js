@@ -9,6 +9,7 @@ const User = require("./models/user.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+
 // MongoDB connection
 const mongoUrl = 'mongodb://127.0.0.1:27017/Fit_AI';
 main().then(() => console.log("db connected successfully")).catch(console.log);
@@ -49,15 +50,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-// app.get("/test-flash", (req, res) => {
-//     req.flash('success', 'Flash message test successful!');
-//     res.redirect("/flash-display");
-// });
-
-// app.get("/flash-display", (req, res) => {
-//     res.send(req.flash('success'));
-// });
-
 // Routes
 app.get("/", (req, res) => {
     res.send("<h1>You are on the root path</h1>");
@@ -78,7 +70,7 @@ app.post("/signup", async (req, res) => {
 
         // Check if the passwords match
         if (password !== confirmpassword) {
-            return res.render("notequal.ejs");
+            return res.render("./errors/notequal.ejs");
         }
 
         // Proceed with registration if passwords match
@@ -94,15 +86,13 @@ app.post("/signup", async (req, res) => {
     } catch (error) {
         // Flash error message and render the error page
         req.flash("error", error.message);
-        return res.render("signuperror.ejs");
+        return res.render("./errors/signuperror.ejs");
     }
 });
 
-
-
 app.get("/loginerror", (req, res) => {
 
-    res.render("loginerror.ejs");
+    res.render("./errors/loginerror.ejs");
 })
 // Login route (GET)
 app.get("/login", (req, res) => {
@@ -118,7 +108,7 @@ app.post("/login", passport.authenticate("local", {
         req.flash("success", "Welcome back!");
         res.redirect("/home");
     } catch (error) {
-        res.render("loginerror.ejs");
+        res.render("./errors/loginerror.ejs");
     }
 });
 
