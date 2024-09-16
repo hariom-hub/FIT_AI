@@ -112,6 +112,9 @@ app.post("/login", passport.authenticate("local", {
     }
 });
 
+app.get("/assist",(req,res)=>{
+    res.redirect("https://fitnutri.onrender.com/");
+})
 // Start server
 app.listen(port, () => {
     console.log("Server is listening to port: " + port);
