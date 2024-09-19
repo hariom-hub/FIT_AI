@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        footer {
+            background-color: #1b1b1b;
+            /* Darker background */
+            color: #cfcfcf;
+            /* Light text */
+        }
+
+        footer h5 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: #cfcfcf;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter {
+            background-color: #2c2c2c;
+            border: none;
+            padding: 1rem;
+            color: #ffffff;
+        }
+
+        .newsletter input[type="email"] {
+            background-color: #333333;
+            border: 1px solid #555555;
+            color: #ffffff;
+            padding: 0.75rem;
+        }
+
+        .newsletter input::placeholder {
+            color: #aaaaaa;
+        }
+
+        .newsletter button {
+            background-color: #007bff;
+            border: none;
+            padding: 0.75rem 1rem;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            background-color: #0056b3;
+        }
+
+        .social-icons a {
+            color: #cfcfcf;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+            /* Social icon hover color */
+        }
+
+        footer hr {
+            border-top: 1px solid #444;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <!-- First Column -->
+                <div class="col-md-3">
+                    <h5>Section</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Features</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Pricing</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <!-- Second Column -->
+                <div class="col-md-3">
+                    <h5>Section</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Features</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Pricing</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <!-- Third Column -->
+                <div class="col-md-3">
+                    <h5>Section</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Features</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Pricing</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <!-- Newsletter Column -->
+                <div class="col-md-3">
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control me-2" placeholder="Email address">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-top border-light">
+            <div class="d-flex justify-content-between">
+                <p class="mb-0">© 2024 Company, Inc. All rights reserved.</p>
+                <div>
+                    <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

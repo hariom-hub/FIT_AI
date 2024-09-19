@@ -8,6 +8,7 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const { link } = require("fs");
 
 
 // MongoDB connection
@@ -35,7 +36,7 @@ app.use(passport.session());  // Required for persistent login sessions
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname,"/public")));
 
 // Flash messages middleware
 app.use((req, res, next) => {
@@ -116,13 +117,14 @@ app.get("/assist", (req, res) => {
     res.redirect("https://fitnutri.onrender.com/");
 });
 
-
 //user profile route
 
 app.get("/profile/:user", (req, res) => {
 
-    let { user } = req.params;
-    res.send("this is the profile for the user : " + user);
+    let {user} = req.params;
+    res.render("./user/userprofile.ejs",{user});
+    
+    
 });
 
 app.get("/admin", (req, res) => {
