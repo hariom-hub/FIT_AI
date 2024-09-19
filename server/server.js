@@ -112,10 +112,25 @@ app.post("/login", passport.authenticate("local", {
     }
 });
 
-app.get("/assist",(req,res)=>{
+app.get("/assist", (req, res) => {
     res.redirect("https://fitnutri.onrender.com/");
+});
+
+
+//user profile route
+
+app.get("/profile/:user", (req, res) => {
+
+    let { user } = req.params;
+    res.send("this is the profile for the user : " + user);
+});
+
+app.get("/admin", (req, res) => {
+
+    res.render("./admin/admin.ejs");
 })
 // Start server
+
 app.listen(port, () => {
     console.log("Server is listening to port: " + port);
 });
