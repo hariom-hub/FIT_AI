@@ -12,27 +12,59 @@ nav{
     top: 0px;
     position: fixed;
     width: 100%;
-    flex: 1;
+    z-index: 999;
     padding: 0px 10px;
     background-color:black;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 5px 5px 5px rgba(253, 247, 247, 0.1);
 }
 nav .nav2{
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
+    
 }
 .nav2 a{
     margin: 0px 5px;
+    text-decoration: none;
+}   
+
+section{
+    top: 55px;
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 10px 30px;
+}
+
+section span{
+    color: #0bd754;
+}
+
+.features{
+    display: flex;
+    margin: 20px 0px;
+    align-items: center;
+    flex-direction: column;
+
+}
+.features div{
+
+    margin: 10px 0px;
+}
+.features .card-title{
+    text-align: center;
 }
 footer{
+    top: 50px;
     bottom: 0px;
-    border: 1px solid black;
-    position: absolute;
+    position: relative;
     width: 100%;
+    background-color:black;
+    color: white;
 }
 
 footer .part1{
@@ -41,6 +73,16 @@ footer .part1{
     align-items: center;
 }
 
+.left-footer li a{
+    color: white;
+    opacity: 0.5;
+    
+}
+.left-footer li a:hover{
+    color: white;
+    opacity: 1;
+    
+}
 .part2{
     width: 100%;
     text-align: center;
@@ -50,6 +92,11 @@ footer .part1{
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+}
+
+.icons a{
+    margin: 0px 5px;
+    
 }
 
 .part1{
@@ -66,4 +113,7 @@ footer .part1{
     list-style-type: none;
     margin: 0px 10px;
     position: relative;
+}
+.part1 ul li a{
+    text-decoration: none;
 }
