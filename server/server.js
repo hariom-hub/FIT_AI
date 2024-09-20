@@ -111,11 +111,16 @@ app.post("/login", passport.authenticate("local", {
 }), async (req, res) => {
 
     try {
-        await res.redirect("/home");
+        let user = req.body;
+        console.log(user);
+        if(!user){
+            res.redirect("/loginerror");
+        }
+        await res.render("./user/userprofile.ejs",{user});  
     } catch (error) {
         res.render("./errors/loginerror.ejs");
     }
-});
+}); 
 
 
 app.get("/assist", async (req, res) => {
