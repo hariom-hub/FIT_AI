@@ -9,6 +9,7 @@ const userSchema = new Schema({
         type : String,
         required : true
     },
+    
     //passport js automatically adds user-name
 });
 

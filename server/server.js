@@ -36,7 +36,7 @@ app.use(passport.session());  // Required for persistent login sessions
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname,"/public")));
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Flash messages middleware
 app.use((req, res, next) => {
@@ -69,6 +69,7 @@ app.post("/signup", async (req, res) => {
     try {
         let { username, email, password, confirmpassword } = req.body;
 
+
         // Check if the passwords match
         if (password !== confirmpassword) {
             return res.render("./errors/notequal.ejs");
@@ -82,7 +83,9 @@ app.post("/signup", async (req, res) => {
 
         // Flash success message and redirect to home
         req.flash("success", "User registered successfully.");
-        return res.redirect("/home");
+        let userId = newUser._id.toString();
+        // console.log(newUser._id);
+        return res.redirect(`/profile/${userId}`);
 
     } catch (error) {
         // Flash error message and render the error page
@@ -96,8 +99,9 @@ app.get("/loginerror", (req, res) => {
     res.render("./errors/loginerror.ejs");
 })
 // Login route (GET)
-app.get("/login", (req, res) => {
-    res.render("login.ejs");
+app.get("/login", async (req, res) => {
+
+    await res.render("login.ejs");
 });
 
 // Login route (POST)
@@ -105,31 +109,38 @@ app.post("/login", passport.authenticate("local", {
     failureRedirect: "/loginerror",
     failureFlash: true
 }), async (req, res) => {
+
     try {
-        req.flash("success", "Welcome back!");
-        res.redirect("/home");
+        await res.redirect("/home");
     } catch (error) {
         res.render("./errors/loginerror.ejs");
     }
 });
 
-app.get("/assist", (req, res) => {
-    res.redirect("https://fitnutri.onrender.com/");
+
+app.get("/assist", async (req, res) => {
+    await res.redirect("https://fitnutri.onrender.com/");
 });
 
 //user profile route
 
-app.get("/profile/:user", (req, res) => {
+app.get("/profile/:id", async (req, res) => {
 
-    let {user} = req.params;
-    res.render("./user/userprofile.ejs",{user});
-    
-    
-});
+    try {
 
-app.get("/admin", (req, res) => {
+        const userId = req.params.id;
+        const user = await User.findById(userId);
 
-    res.render("./admin/admin.ejs");
+        if (!user) {
+            res.send("user doesn't exists");
+            return res.redirect("/signup");
+        }
+        await res.render("./user/userprofile.ejs", { user });
+    } catch (error) {
+        console.log(error.message);
+        res.redirect("/signup");
+    }
+
 })
 // Start server
 
