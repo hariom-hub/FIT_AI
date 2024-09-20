@@ -51,9 +51,16 @@ section span{
     flex-direction: column;
 
 }
-.features div{
+.features .card{
 
     margin: 10px 0px;
+}
+.features .card:hover{
+
+    box-shadow: 2.5px 2.7px 2px 1px rgba(9, 138, 33, 0.924);
+    transition-duration: 0.5s;
+    transition-delay: 0.03s;
+    
 }
 .features .card-title{
     text-align: center;
@@ -65,6 +72,7 @@ footer{
     width: 100%;
     background-color:black;
     color: white;
+    box-shadow: 3px 3px 5px 3px white;
 }
 
 footer .part1{
