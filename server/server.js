@@ -84,6 +84,7 @@ app.post("/signup", async (req, res) => {
         // Flash success message and redirect to home
         req.flash("success", "User registered successfully.");
         let userId = newUser._id.toString();
+        console.log
         // console.log(newUser._id);
         return res.redirect(`/profile/${userId}`);
 
@@ -123,6 +124,12 @@ app.post("/login", passport.authenticate("local", {
 }); 
 
 
+//admin route 
+
+app.get("/admin",(req,res)=>{
+    res.render("./admin/admin.ejs");
+})
+
 app.get("/assist", async (req, res) => {
     await res.redirect("https://fitnutri.onrender.com/");
 });
@@ -146,6 +153,16 @@ app.get("/profile/:id", async (req, res) => {
         res.redirect("/signup");
     }
 
+});
+
+app.get("/profile/:id/details",async (req,res)=>{
+
+    res.render("./user/details.ejs");
+});
+
+app.get("/userprofiledemo",(req,res)=>{
+
+    res.render("./user/userprofiledemo.ejs");
 })
 // Start server
 
